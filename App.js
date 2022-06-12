@@ -13,7 +13,7 @@ import ResumenPedido from './views/ResumenPedido'
 import Menu from './views/Menu'
 
 import FirebaseState from './context/firebase/firebaseState'
-import PedidoState from './context/pedidos/pedidosState'
+import PedidoState from './context/pedidos/pedidoState'
 
 const Stack = createStackNavigator();
 

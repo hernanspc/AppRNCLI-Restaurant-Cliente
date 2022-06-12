@@ -3,7 +3,7 @@ import React,{ useReducer} from 'react'
 import PedidoReducer from './pedidoReducer'
 import PedidoContext from './pedidoContext'
 
-const PedidosState =(props)=>{
+const PedidoState =(props)=>{
 
     // console.log('firebase',firebase)  //funciona OK
 
@@ -26,4 +26,4 @@ const PedidosState =(props)=>{
 }
 
 
-export default PedidosState
+export default PedidoState
