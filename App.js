@@ -19,69 +19,72 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerStyle:{
-              backgroundColor: "#FFDA00"
-            },
-            headerTitleStyle:{
-              fontWeight: 'bold'
-            }
-          }}
-        >
-          <Stack.Screen 
-            name="Nueva Orden"
-            component={NuevaOrden}
-            options={{
-              title:"Nueva Orden"
+      <FirebaseState>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerStyle:{
+                backgroundColor: "#FFDA00"
+              },
+              headerTitleStyle:{
+                fontWeight: 'bold'
+              }
             }}
-          />
+          >
+            <Stack.Screen 
+              name="Nueva Orden"
+              component={NuevaOrden}
+              options={{
+                title:"Nueva Orden"
+              }}
+            />
 
-          <Stack.Screen 
-            name="Menu"
-            component={Menu}
-            options={{
-              title:"Nuestro MenÚ"
-            }}
-          />
+            <Stack.Screen 
+              name="Menu"
+              component={Menu}
+              options={{
+                title:"Nuestro MenÚ"
+              }}
+            />
 
-          <Stack.Screen 
-            name="DetallePlatillo"
-            component={DetallePlatillo}
-            options={{
-              title:"Detalle Platillo"
-            }}
-          />
+            <Stack.Screen 
+              name="DetallePlatillo"
+              component={DetallePlatillo}
+              options={{
+                title:"Detalle Platillo"
+              }}
+            />
 
-          <Stack.Screen 
-            name="FormularioPlatillo"
-            component={FormularioPlatillo}
-            options={{
-              title:"Formulario Platillo"
-            }}
-          />
+            <Stack.Screen 
+              name="FormularioPlatillo"
+              component={FormularioPlatillo}
+              options={{
+                title:"Formulario Platillo"
+              }}
+            />
 
-          <Stack.Screen 
-            name="ResumenPedido"
-            component={ResumenPedido}
-            options={{
-              title:"Resumen Pedido"
-            }}
-          />
+            <Stack.Screen 
+              name="ResumenPedido"
+              component={ResumenPedido}
+              options={{
+                title:"Resumen Pedido"
+              }}
+            />
 
-          <Stack.Screen 
-            name="ProgresoPedido"
-            component={ProgresoPedido}
-            options={{
-              title:"Progreso Pedido"
-            }}
-          />
-          
+            <Stack.Screen 
+              name="ProgresoPedido"
+              component={ProgresoPedido}
+              options={{
+                title:"Progreso Pedido"
+              }}
+            />
+            
 
-        </Stack.Navigator>
-      </NavigationContainer>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FirebaseState>
     </>
+    
   )
 }
 

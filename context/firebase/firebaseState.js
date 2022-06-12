@@ -14,7 +14,10 @@ const FirebaseState =(props)=>{
     const [state, dispatch] = useReducer(FirebaseReducer,initalState)
 
     return(
-        <FirebaseContext.Provider>
+        <FirebaseContext.Provider
+            value={{
+                menu:state.menu
+            }}>
             {props.children}
         </FirebaseContext.Provider>
     )
