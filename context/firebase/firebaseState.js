@@ -9,7 +9,6 @@ import FirebaseContext from './firebaseContext'
 
 const FirebaseState =(props)=>{
 
-    console.log('FirebaseState ',firebase)
     // console.log('firebase',firebase)  //funciona OK
 
     //crear state inicial
@@ -23,7 +22,8 @@ const FirebaseState =(props)=>{
     return(
         <FirebaseContext.Provider
             value={{
-                menu:state.menu
+                menu:state.menu,
+                firebase
             }}>
             {props.children}
         </FirebaseContext.Provider>
