@@ -2,7 +2,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 const NuevaOrden = () => {
+  console.log('ssss')
   return (
+    
     <View>
       <Text>NuevaOrden</Text>
     </View>
