@@ -38,11 +38,7 @@ const Menu = () => {
     }, []);
 
     const mostrarHeading = (categoria, i) => {
-
-      // return (
-      //   <Text style={styles.separadorTexto}> {categoria} {i}</Text>
-      // )
-
+      // return <Text style={styles.separadorTexto}> {categoria} {i} </Text>
         if(i > 0 ) {
             const categoriaAnterior = menu[i - 1].categoria;
             if(categoriaAnterior !== categoria) {
@@ -70,7 +66,7 @@ const Menu = () => {
           }}
           >
 
-          <>
+          {/* <>
             {menu.map((platillo, i) => {
 
               const { id, categoria, nombre, imagen, descripcion, precio } = platillo;
@@ -129,18 +125,22 @@ const Menu = () => {
               )
 
             })}
-          </>
+          </> */}
 
 
 
-          {/* <FlatList data={menu} renderItem={({
-            item
-          }) => <Box
+          <FlatList data={menu} renderItem={({
+            item, index
+          }) => {
+
+            return (
+              <>
+                <Box
             borderBottomWidth="1" _dark={{
               borderColor: "gray.600"
             }} borderColor="coolGray.200" pl="4" pr="5" py="2">
 
-              {mostrarHeading(item.categoria, item.id)}
+                  {mostrarHeading(item.categoria, index)}
 
             <Card>
               <HStack space={3} justifyContent="space-between">
@@ -181,8 +181,17 @@ const Menu = () => {
                 <Spacer />
             </HStack>
             </Card>
-            </Box>}
-            keyExtractor={item => item.id} /> */}
+                </Box>
+
+              </>
+            )
+          }}
+
+
+
+
+            keyExtractor={item => item.id}
+          />
 
           </View>
 
