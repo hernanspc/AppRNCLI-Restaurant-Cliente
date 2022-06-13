@@ -2,6 +2,10 @@ export function capitalizarPrimeraLetra(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+export function capitalizarCadenaLarga(value) {
+  return value.trim().toLowerCase().replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())));
+}
+
 export function milliFormat(num) {
   // Agregar miles
   let s;
