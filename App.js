@@ -23,9 +23,10 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <>
+      <NativeBaseProvider>
       <FirebaseState>
         <PedidoState>
-          <NativeBaseProvider>
+
             <NavigationContainer>
               <Stack.Navigator
                   screenOptions={{
@@ -89,9 +90,10 @@ const App = () => {
 
               </Stack.Navigator>
             </NavigationContainer>
-          </NativeBaseProvider>
+
         </PedidoState>
       </FirebaseState>
+      </NativeBaseProvider>
     </>
     
   )
