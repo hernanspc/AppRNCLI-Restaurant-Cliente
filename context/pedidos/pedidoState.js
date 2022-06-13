@@ -3,6 +3,7 @@ import React,{ useReducer} from 'react'
 import PedidoReducer from './pedidoReducer'
 import PedidoContext from './pedidoContext'
 
+
 const PedidoState =(props)=>{
 
     // console.log('firebase',firebase)  //funciona OK

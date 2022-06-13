@@ -6,7 +6,7 @@ import firebase from '../../firebase';
 import FirebaseReducer from './firebaseReducer'
 import FirebaseContext from './firebaseContext'
 
-// import { OBTENER_PRODUCTOS_EXITO } from '../../types'
+import {OBTENER_PRODUCTOS_EXITO} from "./../../types"
 
 const FirebaseState =(props)=>{
 
@@ -42,10 +42,10 @@ const FirebaseState =(props)=>{
             console.log(platillos)
 
             // Tenemos resultados de la base de datos
-            // dispatch({
-            //     type: OBTENER_PRODUCTOS_EXITO,
-            //     payload: platillos
-            // });
+            dispatch({
+                type: OBTENER_PRODUCTOS_EXITO,
+                payload: platillos
+            });
         }
     }
 
