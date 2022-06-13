@@ -3,6 +3,9 @@ import React,{ useReducer} from 'react'
 import PedidoReducer from './pedidoReducer'
 import PedidoContext from './pedidoContext'
 
+import {
+    SELECCIONAR_PRODUCTO
+} from '../../types'
 
 const PedidoState =(props)=>{
 
@@ -10,16 +13,25 @@ const PedidoState =(props)=>{
 
     //crear state inicial
     const initalState = {
-        pedido:  []
+        pedido: [],
+        platillo: null,
     }
 
     //use reducer con dispatch para ejecutar funciones
     const [state, dispatch] = useReducer(PedidoReducer,initalState)
 
+    //Seleciona el producto que el usuario desea ordenar
+
+    const seleccionarPlatillo = () => {
+
+    }
+
     return(
         <PedidoContext.Provider
             value={{
-                pedido: state.pedido
+                pedido: state.pedido,
+                platillo: state.platillo,
+                seleccionarPlatillo
             }}>
             {props.children}
         </PedidoContext.Provider>
