@@ -2,14 +2,19 @@ import React, { useContext, useEffect, Fragment } from 'react';
 import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import {
-    Container,
-    Separator,
-    Content,
-    List,
-    ListItem,
-    Image,
-    Text,
-    Card,Body,Avatar,FlatList, HStack, VStack,Box,Spacer
+  Container,
+  Separator,
+  Content,
+  Image,
+  Text,
+  Card,
+  Body,
+  Avatar,
+  FlatList,
+  HStack,
+  VStack,
+  Box,
+  Spacer
 } from 'native-base';
 import globalStyles from '../styles/global';
 
@@ -33,20 +38,21 @@ const Menu = () => {
     }, []);
 
     const mostrarHeading = (categoria, i) => {
+
         if(i > 0 ) {
             const categoriaAnterior = menu[i - 1].categoria;
             if(categoriaAnterior !== categoria) {
                 return (
-                    <Separator style={styles.separador}>
+                    // <Separator style={styles.separador}>
                         <Text style={styles.separadorTexto}> {categoria} </Text>
-                    </Separator>
+                    // </Separator>
                 )
             }
         } else {
             return (
-                <Separator style={styles.separador}>
+                // <Separator style={styles.separador}>
                     <Text style={styles.separadorTexto}> {categoria} </Text>
-                </Separator>
+                // </Separator>
             )
         }
     }
@@ -60,10 +66,13 @@ const Menu = () => {
           }}
           >
           <FlatList data={menu} renderItem={({
-      item
-    }) => <Box  borderBottomWidth="1" _dark={{
-      borderColor: "gray.600"
-    }} borderColor="coolGray.200" pl="4" pr="5" py="2">
+            item
+          }) => <Box
+            borderBottomWidth="1" _dark={{
+              borderColor: "gray.600"
+            }} borderColor="coolGray.200" pl="4" pr="5" py="2">
+
+              {mostrarHeading(item.categoria, item.id)}
           
             <Card>
               <HStack space={3} justifyContent="space-between">
