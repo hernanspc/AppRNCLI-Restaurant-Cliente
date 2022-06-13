@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
   Container,
   Separator,
+  Divider,
   Content,
   Image,
   Text,
@@ -20,6 +21,8 @@ import globalStyles from '../styles/global';
 
 import  FirebaseContext from '../context/firebase/firebaseContext';
 import PedidoContext from '../context/pedidos/pedidoContext';
+
+import { capitalizarPrimeraLetra } from '../utils/functions';
 
 
 const Menu = () => {
@@ -44,14 +47,20 @@ const Menu = () => {
             if(categoriaAnterior !== categoria) {
                 return (
                     // <Separator style={styles.separador}>
-                        <Text style={styles.separadorTexto}> {categoria} </Text>
+                  <View style={styles.separador}>
+                    <Text style={styles.separadorTexto}> {capitalizarPrimeraLetra(categoria?.toLowerCase())} </Text>
+                  </View>
+
                     // </Separator>
                 )
             }
         } else {
             return (
                 // <Separator style={styles.separador}>
-                    <Text style={styles.separadorTexto}> {categoria} </Text>
+              <View style={styles.separador}>
+                <Text style={styles.separadorTexto}> {capitalizarPrimeraLetra(categoria?.toLowerCase())} </Text>
+              </View>
+
                 // </Separator>
             )
         }
@@ -66,68 +75,6 @@ const Menu = () => {
           }}
           >
 
-          {/* <>
-            {menu.map((platillo, i) => {
-
-              const { id, categoria, nombre, imagen, descripcion, precio } = platillo;
-
-              return (
-                <>
-                  <Fragment key={id}>
-                    {mostrarHeading(categoria, i)}
-                    <Box borderBottomWidth="1" _dark={{
-                      borderColor: "gray.600"
-                    }} borderColor="coolGray.200" pl="4" pr="5" py="2">
-
-                      <Card>
-                        <HStack space={3} justifyContent="space-between">
-                          <Image resizeMode="contain" size="md" style={{}} source={{
-                            uri: imagen
-                          }} />
-
-                          <VStack>
-                            <Text _dark={{
-                              color: "warmGray.50"
-                            }}
-                              color="coolGray.800"
-                              bold
-                            >
-                              {nombre}
-                            </Text>
-                            <Text
-                              note
-                              numberOfLines={2}
-                              color="coolGray.500" _dark={{
-                                color: "warmGray.100"
-                              }}>
-                              {descripcion}
-                            </Text>
-
-                            <Text
-                              fontSize="xs"
-                              _dark={{
-                                color: "warmGray.50"
-                              }}
-                              color="coolGray.800"
-                              alignSelf="flex-start"
-                              fontWeight="bold"
-                            >
-                              Precio: S/. {precio}
-                            </Text>
-                          </VStack>
-                          <Spacer />
-                        </HStack>
-                      </Card>
-
-                    </Box>
-                  </Fragment>
-                </>
-              )
-
-            })}
-          </> */}
-
-
 
           <FlatList data={menu} renderItem={({
             item, index
@@ -135,12 +82,15 @@ const Menu = () => {
 
             return (
               <>
+                {mostrarHeading((item?.categoria), index)}
                 <Box
             borderBottomWidth="1" _dark={{
               borderColor: "gray.600"
             }} borderColor="coolGray.200" pl="4" pr="5" py="2">
 
-                  {mostrarHeading(item.categoria, index)}
+
+
+
 
             <Card>
               <HStack space={3} justifyContent="space-between">
@@ -205,9 +155,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
     },
     separadorTexto: {
-        color: '#FFDA00',
-        fontWeight: 'bold',
-        textTransform: 'uppercase'
+      padding: 5,
+      color: '#585858',
+      fontWeight: 'bold',
+      // textTransform: 'uppercase',
+      backgroundColor: '#C0C0C0',
+
     }
 })
  
