@@ -1,15 +1,14 @@
-import React,{ useReducer} from 'react'
+import React,{ useReducer,useEffect} from 'react'
 
 import firebase from '../../firebase';
 
 // import firebase from '../../database/firebase' //funciona OK
-
 import FirebaseReducer from './firebaseReducer'
 import FirebaseContext from './firebaseContext'
 
-const FirebaseState =(props)=>{
+// import { OBTENER_PRODUCTOS_EXITO } from '../../types'
 
-    // console.log('firebase',firebase)  //funciona OK
+const FirebaseState =(props)=>{
 
     //crear state inicial
     const initalState = {
@@ -19,11 +18,44 @@ const FirebaseState =(props)=>{
     //use reducer con dispatch para ejecutar funciones
     const [state, dispatch] = useReducer(FirebaseReducer,initalState)
 
+    //funcion para traer productos
+    const obtenerProductos = () => {
+  
+
+        // consultar firebase
+        firebase.db
+            .collection('productos')
+            .where('existencia', '==', true) // traer solo los que esten en existencia
+            .onSnapshot(manejarSnapshot);
+
+        function manejarSnapshot(snapshot) {
+            let platillos = snapshot.docs.map(doc => {
+                return {
+                    id: doc.id,
+                    ...doc.data()
+                }
+            });
+
+            // Ordenar por categoria con lodash
+            // platillos = _.sortBy(platillos, 'categoria');
+
+            console.log(platillos)
+
+            // Tenemos resultados de la base de datos
+            // dispatch({
+            //     type: OBTENER_PRODUCTOS_EXITO,
+            //     payload: platillos
+            // });
+        }
+    }
+
+
     return(
         <FirebaseContext.Provider
             value={{
                 menu:state.menu,
-                firebase
+                firebase,
+                obtenerProductos
             }}>
             {props.children}
         </FirebaseContext.Provider>
