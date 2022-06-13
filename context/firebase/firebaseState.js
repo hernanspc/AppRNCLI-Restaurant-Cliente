@@ -2,11 +2,11 @@ import React,{ useReducer,useEffect} from 'react'
 
 import firebase from '../../firebase';
 
-// import firebase from '../../database/firebase' //funciona OK
 import FirebaseReducer from './firebaseReducer'
 import FirebaseContext from './firebaseContext'
 
 import {OBTENER_PRODUCTOS_EXITO} from "./../../types"
+import _ from 'lodash'
 
 const FirebaseState =(props)=>{
 
@@ -37,9 +37,7 @@ const FirebaseState =(props)=>{
             });
 
             // Ordenar por categoria con lodash
-            // platillos = _.sortBy(platillos, 'categoria');
-
-            console.log(platillos)
+            platillos = _.sortBy(platillos, 'categoria');
 
             // Tenemos resultados de la base de datos
             dispatch({

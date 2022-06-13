@@ -39,6 +39,10 @@ const Menu = () => {
 
     const mostrarHeading = (categoria, i) => {
 
+      // return (
+      //   <Text style={styles.separadorTexto}> {categoria} {i}</Text>
+      // )
+
         if(i > 0 ) {
             const categoriaAnterior = menu[i - 1].categoria;
             if(categoriaAnterior !== categoria) {
@@ -65,7 +69,71 @@ const Menu = () => {
             backgroundColor: '#FFF'
           }}
           >
-          <FlatList data={menu} renderItem={({
+
+          <>
+            {menu.map((platillo, i) => {
+
+              const { id, categoria, nombre, imagen, descripcion, precio } = platillo;
+
+              return (
+                <>
+                  <Fragment key={id}>
+                    {mostrarHeading(categoria, i)}
+                    <Box borderBottomWidth="1" _dark={{
+                      borderColor: "gray.600"
+                    }} borderColor="coolGray.200" pl="4" pr="5" py="2">
+
+                      <Card>
+                        <HStack space={3} justifyContent="space-between">
+                          <Image resizeMode="contain" size="md" style={{}} source={{
+                            uri: imagen
+                          }} />
+
+                          <VStack>
+                            <Text _dark={{
+                              color: "warmGray.50"
+                            }}
+                              color="coolGray.800"
+                              bold
+                            >
+                              {nombre}
+                            </Text>
+                            <Text
+                              note
+                              numberOfLines={2}
+                              color="coolGray.500" _dark={{
+                                color: "warmGray.100"
+                              }}>
+                              {descripcion}
+                            </Text>
+
+                            <Text
+                              fontSize="xs"
+                              _dark={{
+                                color: "warmGray.50"
+                              }}
+                              color="coolGray.800"
+                              alignSelf="flex-start"
+                              fontWeight="bold"
+                            >
+                              Precio: S/. {precio}
+                            </Text>
+                          </VStack>
+                          <Spacer />
+                        </HStack>
+                      </Card>
+
+                    </Box>
+                  </Fragment>
+                </>
+              )
+
+            })}
+          </>
+
+
+
+          {/* <FlatList data={menu} renderItem={({
             item
           }) => <Box
             borderBottomWidth="1" _dark={{
@@ -73,7 +141,7 @@ const Menu = () => {
             }} borderColor="coolGray.200" pl="4" pr="5" py="2">
 
               {mostrarHeading(item.categoria, item.id)}
-          
+
             <Card>
               <HStack space={3} justifyContent="space-between">
                 <Image resizeMode="contain" size="md" style={{}} source={{
@@ -83,13 +151,13 @@ const Menu = () => {
                 <VStack>
                    <Text _dark={{
                       color: "warmGray.50"
-                    }} 
-                    color="coolGray.800" 
+                    }}
+                    color="coolGray.800"
                     bold
                     >
                       {item.nombre}
                     </Text>
-                    <Text 
+                    <Text
                       note
                       numberOfLines={2}
                       color="coolGray.500" _dark={{
@@ -98,22 +166,23 @@ const Menu = () => {
                     {item.descripcion}
                     </Text>
 
-                    <Text 
-                      fontSize="xs" 
+                    <Text
+                      fontSize="xs"
                       _dark={{
                         color: "warmGray.50"
-                      }} 
+                      }}
                       color="coolGray.800"
                       alignSelf="flex-start"
                       fontWeight="bold"
                     >
                     Precio: S/. {item.precio}
-                  </Text> 
+                  </Text>
                 </VStack>
-                <Spacer /> 
+                <Spacer />
             </HStack>
-            </Card> 
-          </Box>} keyExtractor={item => item.id} />
+            </Card>
+            </Box>}
+            keyExtractor={item => item.id} /> */}
 
           </View>
 
