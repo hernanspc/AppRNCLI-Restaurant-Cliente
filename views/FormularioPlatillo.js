@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { StyleSheet, View, } from 'react-native'
+import { StyleSheet, View, Alert } from 'react-native'
 import {
   Container,
   Content,
@@ -36,10 +36,11 @@ import globalStyles from '../styles/global'
 
 const FormularioPlatillo = () => {
 
-  //state para cantidades
+  // State para cantidades
   const [cantidad, guardarCantidad] = useState(1);
-  const [total, guardarTotal] = useState(0)
-  //context
+  const [total, guardarTotal] = useState(0);
+
+  // Context
   const { platillo } = useContext(PedidoContext);
   const { precio } = platillo;
 
@@ -49,7 +50,7 @@ const FormularioPlatillo = () => {
   }, [cantidad])
 
 
-  //calcula total de platillo
+  // Calcula total de platillo
   const calcularTotal = () => {
     const totalPagar = precio * cantidad;
     guardarTotal(totalPagar)
@@ -69,7 +70,7 @@ const FormularioPlatillo = () => {
 
   ];
 
-  //Decrementar uno
+  // Decrementar uno
   const decrementarUno = () => {
     if (cantidad > 1) {
       const newCantidad = parseFloat(cantidad) - 1;
@@ -77,11 +78,33 @@ const FormularioPlatillo = () => {
     }
   }
 
-  //incrementar Uno
+  // Incrementar Uno
   const incrementarUno = () => {
     console.log('cantidad ', cantidad)
     const newCantidad = parseFloat(cantidad) + 1;
     guardarCantidad(newCantidad)
+  }
+
+  // Agregar pedido
+  const confirmarOrden = () => {
+    Alert.alert(
+      '¿Deseas confirmar tu pedido?',
+      'Un pedido confirmado ya no se podrá modificar',
+      [
+        {
+          text: 'Confirmar',
+          onPress: () => {
+            // Almacenar el pedido al pedido principal
+
+            // Navegar hacia el Resumen
+          },
+        },
+        {
+          text: 'Cancelar',
+          style: 'cancel'
+        }
+      ]
+    )
   }
 
   const renderItem = ({ item }) =>
@@ -164,12 +187,13 @@ const FormularioPlatillo = () => {
           <Box
             style={{ width: '100%', height: '100%' }}
           >
-            <Button style={{ marginBottom: 10, backgroundColor: "#fd2" }}
+            <Button style={globalStyles.boton}
               onPress={() => {
                 console.log('Ordenar platillos');
+                confirmarOrden()
               }}
             >
-              <Text style={globalStyles.botonTexto}>Ordenar platillo</Text>
+              <Text style={globalStyles.botonTexto}>Agregar al pedido</Text>
             </Button>
           </Box>
         </HStack>
