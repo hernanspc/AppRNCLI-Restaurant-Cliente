@@ -45,15 +45,18 @@ const ResumenPedido = () => {
       <Center>
         <Text style={[globalStyles.titulo, { paddingVertical: 10 }]}>Resumen Pedido</Text>
       </Center>
-      {pedido.map(platillo => {
-        const { cantidad, nombre, imagen, id, precio } = platillo;
-        return (
-          <View key={id}>
-            <Text> Hola {cantidad} </Text>
-          </View>
+      <>
+        {pedido.map(platillo => {
+          const { cantidad, nombre, imagen, id, precio, total } = platillo;
+          return (
+            <View key={id}>
+              <Text> cantidad {nombre} </Text>
+              <Text> cantidad {total} </Text>
+            </View>
 
-        );
-      })}
+          );
+        })}
+      </>
     </Card>
   )
 }

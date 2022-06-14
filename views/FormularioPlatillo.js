@@ -99,7 +99,7 @@ const FormularioPlatillo = () => {
           onPress: () => {
             // Almacenar el pedido al pedido principal
             const pedido = {
-              ...pedido,
+              ...platillo,
               cantidad,
               total
             }
