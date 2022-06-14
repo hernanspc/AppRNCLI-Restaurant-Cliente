@@ -5,6 +5,7 @@ import {
   Content,
   Footer,
   FooterTab,
+  Pressable,
   Button,
   Body,
   Text,
@@ -13,8 +14,10 @@ import {
   Heading,
   Card,
   CardItem,
-  Center
+  Center,
+  HStack
 } from 'native-base'
+import { useNavigation } from '@react-navigation/native';
 import { formatUSD } from '../utils/functions'
 
 import PedidoContext from '../context/pedidos/pedidoContext'
@@ -25,6 +28,9 @@ const DetallePlatillo = () => {
   //pedido context
   const { platillo } = useContext(PedidoContext);
   const { nombre, imagen, descripcion, precio } = platillo;
+
+  // Hook para redireccionar
+  const navigation = useNavigation();
 
   return (
     <Card style={[globalStyles.contenedor, { backgroundColor: '#FFF' }]}>
@@ -52,7 +58,26 @@ const DetallePlatillo = () => {
 
           </Box>
         </Card>
+
       </Box>
+
+      <HStack
+        space={10}
+      >
+        <Box
+          style={{ width: '100%', height: '100%' }}
+        >
+          <Button style={{ marginBottom: 10, backgroundColor: "#fd2" }}
+            onPress={() => {
+              console.log('ir a FormularioPlatillo');
+              navigation.navigate('FormularioPlatillo');
+            }}
+          >
+            <Text style={globalStyles.botonTexto}>Ordenar platillo</Text>
+          </Button>
+        </Box>
+      </HStack>
+
     </Card>
   )
 }
