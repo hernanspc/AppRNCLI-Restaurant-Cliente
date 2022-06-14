@@ -64,7 +64,7 @@ const Menu = () => {
   }
 
   return (
-    <Fragment style={globalStyles.contenedor}>
+    <View style={globalStyles.contenedor}>
       <View
         style={{
           height: '100%',
@@ -146,7 +146,6 @@ const Menu = () => {
                   }}
                 </Pressable>
               </Box>
-
             </>
           )
         }}
@@ -157,7 +156,7 @@ const Menu = () => {
 
 
       </View>
-    </Fragment>
+    </View>
   );
 }
 
