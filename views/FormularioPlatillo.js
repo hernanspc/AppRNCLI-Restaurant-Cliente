@@ -99,9 +99,9 @@ const FormularioPlatillo = () => {
           _dark={{
             backgroundColor: "gray.900"
           }}
-          // _text={{
-          //   textAlign: "justifyContent"
-          // }}
+          _text={{
+            textAlign: "justifyContent"
+          }}
           style={{ backgroundColor: "#000", height: 80, width: 90, justifyContent: "center" }}
         >
           <MinusIcon />
@@ -119,23 +119,19 @@ const FormularioPlatillo = () => {
           style={{
             textAlign: 'center',
             fontSize: 20,
-            // backgroundColor: "#F92"
           }}
           width={20}
           keyboardType="numeric"
           onChangeText={(cantidad) => guardarCantidad(cantidad)}
         />
-
-
-
         <Button
           onPress={() => incrementarUno()}
           _dark={{
             backgroundColor: "gray.900"
           }}
-          // _text={{
-          //   textAlign: "justifyContent"
-          // }}
+          _text={{
+            textAlign: "justifyContent"
+          }}
           style={{ backgroundColor: "#000", height: 80, width: 90, justifyContent: "center" }}
         >
           <AddIcon />
@@ -160,7 +156,6 @@ const FormularioPlatillo = () => {
         </Center>
 
       </Card>
-
 
       <View style={{ position: 'absolute', bottom: 20, }}>
         <HStack
