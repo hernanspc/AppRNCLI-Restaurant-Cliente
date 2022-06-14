@@ -15,8 +15,12 @@ import {
   FlatList,
   HStack,
   VStack,
+  Stack,
+  Badge,
   Box,
-  Spacer
+  Spacer,
+  Flex,
+  Center
 } from 'native-base';
 import globalStyles from '../styles/global';
 
@@ -74,13 +78,9 @@ const Menu = () => {
           backgroundColor: '#FFF'
         }}
       >
-        <FlatList data={menu} renderItem={({
+        {/* <FlatList data={menu} renderItem={({
           item, index
         }) => {
-
-
-
-
           return (
             <>
               {mostrarHeading((item?.categoria), index)}
@@ -88,7 +88,6 @@ const Menu = () => {
                 console.log(item.nombre);
               }}
               >
-
                 <Box
                   borderBottomWidth="1" _dark={{
                     borderColor: "gray.600"
@@ -137,11 +136,93 @@ const Menu = () => {
                 </Box>
               </Pressable>
             </>
+          )
+        }}
+          keyExtractor={item => item.id}
+        /> */}
 
+        <FlatList data={menu} renderItem={({
+          item, index
+        }) => {
+          return (
+            <>
+              {mostrarHeading((item?.categoria), index)}
+              <Pressable onPress={() => {
+                console.log(item.nombre);
+              }}
+              >
+                {({
+                  isHovered,
+                  isFocused,
+                  isPressed
+                }) => {
+                  return (
+                    <Box bg={isPressed ? "coolGray.200" : isHovered ? "coolGray.200" : "#FFF"} style={{
+                      transform: [{
+                        scale: isPressed ? 0.96 : 1
+                      }]
+                    }}
+                      p="5" rounded="8" shadow={3} borderWidth="1" borderColor="coolGray.300">
+                      <Box
+                        borderBottomWidth="1" _dark={{
+                          borderColor: "gray.600"
+                        }} borderColor="coolGray.200" pl="4" pr="5" py="2">
+                        <Stack>
+                          <HStack space={3} justifyContent="space-between">
+
+                            {/* <Center size={16} bg="primary.400" rounded="md" _text={{
+                              color: "white"
+                            }} shadow={3}> */}
+                            {/* <Image
+                                // resizeMode="contain" size="md"
+                                source={{
+                                  uri: item?.imagen
+                                }}
+                              /> */}
+
+                            <Image resizeMode="contain" source={{
+                              uri: item?.imagen
+                            }} alt="Alternate Text" size="md" />
+
+                            {/* </Center> */}
+
+                            <VStack>
+                              <Text _dark={{
+                                color: "warmGray.50"
+                              }}
+                                color="coolGray.800"
+                                bold
+                              >
+                                {item.nombre}
+                              </Text>
+                              <Text
+                                note
+                                numberOfLines={2}
+                                color="coolGray.400"
+                                _dark={{
+                                  color: "warmGray.100"
+                                }}
+                              >
+                                {item.descripcion}
+                              </Text>
+                            </VStack>
+                          </HStack>
+                        </Stack>
+
+                      </Box>
+                    </Box>
+                  )
+                }}
+              </Pressable>
+            </>
           )
         }}
           keyExtractor={item => item.id}
         />
+
+
+
+
       </View>
     </Fragment>
   );
