@@ -18,7 +18,8 @@ const globalStyles = StyleSheet.create({
     },
     titulo: {
         textAlign: 'center',
-        marginTop: 40,
+        // marginTop: 40,
+        marginTop: 20,
         marginBottom: 20,
         fontSize: 30,
     },

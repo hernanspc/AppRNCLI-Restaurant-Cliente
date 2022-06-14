@@ -202,7 +202,7 @@ const FormularioPlatillo = () => {
             <Button style={globalStyles.boton}
               onPress={() => {
                 console.log('Ordenar platillos');
-                confirmarOrden()
+                confirmarOrden();
               }}
             >
               <Text style={globalStyles.botonTexto}>Agregar al pedido</Text>
