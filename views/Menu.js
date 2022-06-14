@@ -67,14 +67,19 @@ const Menu = () => {
         <FlatList data={menu} renderItem={({
           item, index
         }) => {
-          const { nombre, imagen, descripcion, precio } = item;
+          const { nombre, imagen, descripcion, categoria, precio } = item;
 
           return (
             <>
-              {mostrarHeading((item?.categoria), index)}
+              {mostrarHeading((categoria), index)}
               <Box>
                 <Pressable maxW="96" onPress={() => {
-                  console.log(nombre);
+
+                  //elimar propiedades
+                  const { existencia, ...platillo2 } = item;
+
+                  seleccionarPlatillo(platillo2);
+                  navigation.navigate('DetallePlatillo')
                 }}>
                   {({
                     isHovered,

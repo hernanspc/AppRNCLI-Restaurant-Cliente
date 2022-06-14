@@ -22,7 +22,11 @@ const PedidoState =(props)=>{
 
     //Seleciona el producto que el usuario desea ordenar
 
-    const seleccionarPlatillo = () => {
+    const seleccionarPlatillo = platillo => {
+        dispatch({
+            type: SELECCIONAR_PRODUCTO,
+            payload: platillo
+        })
 
     }
 
