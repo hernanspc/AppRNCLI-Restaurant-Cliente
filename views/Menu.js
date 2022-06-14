@@ -77,58 +77,74 @@ const Menu = () => {
           return (
             <>
               {mostrarHeading((item?.categoria), index)}
-              <Pressable onPress={() => {
-                console.log(item.nombre);
-              }}
-              >
-                {({
-                  isHovered,
-                  isFocused,
-                  isPressed
-                }) => {
-                  return (
-                    <Box bg={isPressed ? "coolGray.200" : isHovered ? "coolGray.200" : "#FFF"} style={{
-                      transform: [{
-                        scale: isPressed ? 0.96 : 1
-                      }]
-                    }}
-                      p="5" rounded="8" shadow={3} borderWidth="1" borderColor="coolGray.300">
-                      <Box
-                        borderBottomWidth="1" _dark={{
-                          borderColor: "gray.600"
-                        }} borderColor="coolGray.200" pl="4" pr="5" py="2">
-                        <Stack>
-                          <HStack space={3} justifyContent="space-between">
-                            <Image resizeMode="contain" source={{
-                              uri: item?.imagen
-                            }} alt="Alternate Text" size="md" />
-                            <VStack>
-                              <Text _dark={{
+              <Box>
+                <Pressable maxW="96" onPress={() => {
+                  console.log(item.nombre);
+                }}>
+                  {({
+                    isHovered,
+                    isFocused,
+                    isPressed
+                  }) => {
+                    return <Box
+                      bg={isPressed ? "coolGray.200" : isHovered ? "coolGray.200" : "#FFF"}
+                      style={{
+                        transform: [{
+                          scale: isPressed ? 0.96 : 1
+                        }]
+                      }}
+                      p="5" rounded="8" shadow={3} borderWidth="1" borderColor="coolGray.200"
+                      _dark={{
+                        borderColor: "gray.600"
+                      }}
+                      pl="4" pr="5" py="2"
+                    >
+                      <Card>
+                        <HStack space={3} justifyContent="space-between">
+                          <Image resizeMode="contain" source={{
+                            uri: item?.imagen
+                          }} alt="Alternate Text" size="md" />
+
+                          <VStack>
+                            <Text _dark={{
+                              color: "warmGray.50"
+                            }}
+                              color="coolGray.800"
+                              bold
+                            >
+                              {item.nombre}
+                            </Text>
+                            <Text
+                              note
+                              numberOfLines={2}
+                              color="coolGray.400"
+                              _dark={{
+                                color: "warmGray.100"
+                              }}
+                            >
+                              {item.descripcion}
+                            </Text>
+
+                            <Text
+                              fontSize="xs"
+                              _dark={{
                                 color: "warmGray.50"
                               }}
-                                color="coolGray.800"
-                                bold
-                              >
-                                {item.nombre}
-                              </Text>
-                              <Text
-                                note
-                                numberOfLines={2}
-                                color="coolGray.400"
-                                _dark={{
-                                  color: "warmGray.100"
-                                }}
-                              >
-                                {item.descripcion}
-                              </Text>
-                            </VStack>
-                          </HStack>
-                        </Stack>
-                      </Box>
+                              color="coolGray.800"
+                              alignSelf="flex-start"
+                              fontWeight="bold"
+                            >
+                              Precio: S/. {item.precio}
+                            </Text>
+                          </VStack>
+                          <Spacer />
+                        </HStack>
+                      </Card>
                     </Box>
-                  )
-                }}
-              </Pressable>
+                  }}
+                </Pressable>
+              </Box>
+
             </>
           )
         }}
