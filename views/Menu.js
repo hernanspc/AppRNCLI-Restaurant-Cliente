@@ -27,7 +27,7 @@ import globalStyles from '../styles/global';
 import FirebaseContext from '../context/firebase/firebaseContext';
 import PedidoContext from '../context/pedidos/pedidoContext';
 
-import { capitalizarPrimeraLetra } from '../utils/functions';
+import { capitalizarPrimeraLetra, formatUSD } from '../utils/functions';
 
 const Menu = () => {
 
@@ -74,12 +74,14 @@ const Menu = () => {
         <FlatList data={menu} renderItem={({
           item, index
         }) => {
+          const { nombre, imagen, descripcion, precio } = item;
+
           return (
             <>
               {mostrarHeading((item?.categoria), index)}
               <Box>
                 <Pressable maxW="96" onPress={() => {
-                  console.log(item.nombre);
+                  console.log(nombre);
                 }}>
                   {({
                     isHovered,
@@ -102,7 +104,7 @@ const Menu = () => {
                       <Card>
                         <HStack space={3} justifyContent="space-between">
                           <Image resizeMode="contain" source={{
-                            uri: item?.imagen
+                            uri: imagen
                           }} alt="Alternate Text" size="md" />
 
                           <VStack>
@@ -112,7 +114,7 @@ const Menu = () => {
                               color="coolGray.800"
                               bold
                             >
-                              {item.nombre}
+                              {nombre}
                             </Text>
                             <Text
                               note
@@ -122,7 +124,7 @@ const Menu = () => {
                                 color: "warmGray.100"
                               }}
                             >
-                              {item.descripcion}
+                              {descripcion}
                             </Text>
 
                             <Text
@@ -134,7 +136,7 @@ const Menu = () => {
                               alignSelf="flex-start"
                               fontWeight="bold"
                             >
-                              Precio: S/. {item.precio}
+                              Precio: S/. {formatUSD(precio)}
                             </Text>
                           </VStack>
                           <Spacer />
