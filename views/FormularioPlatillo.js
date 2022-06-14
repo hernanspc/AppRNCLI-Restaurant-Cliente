@@ -41,7 +41,7 @@ const FormularioPlatillo = () => {
   const [total, guardarTotal] = useState(0);
 
   // Context
-  const { platillo } = useContext(PedidoContext);
+  const { platillo, guardarPedido } = useContext(PedidoContext);
   const { precio } = platillo;
 
   // En cuanto el componente carga calcular la cantidad a pagar
@@ -95,6 +95,14 @@ const FormularioPlatillo = () => {
           text: 'Confirmar',
           onPress: () => {
             // Almacenar el pedido al pedido principal
+            const pedido = {
+              ...pedido,
+              cantidad,
+              total
+            }
+
+            console.log('form ', pedido);
+            guardarPedido(pedido);
 
             // Navegar hacia el Resumen
           },
