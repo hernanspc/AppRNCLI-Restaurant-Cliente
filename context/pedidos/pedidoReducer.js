@@ -1,6 +1,7 @@
 import {
     SELECCIONAR_PRODUCTO,
-    CONFIRMAR_ORDENAR_PLATILLO
+    CONFIRMAR_ORDENAR_PLATILLO,
+    MOSTRAR_RESUMEN
 } from '../../types'
 
 export default (state,action)=> {
@@ -15,6 +16,12 @@ export default (state,action)=> {
             return {
                 ...state,
                 pedido: [...state.pedido, action.payload]
+            }
+
+        case MOSTRAR_RESUMEN:
+            return {
+                ...state,
+                total: action.payload
             }
 
         default:

@@ -38,7 +38,19 @@ import globalStyles from '../styles/global'
 const ResumenPedido = () => {
 
   // context de pedido
-  const { pedido } = useContext(PedidoContext);
+  const { pedido, total, mostrarResumen } = useContext(PedidoContext);
+
+  useEffect(() => {
+    calcularTotal();
+  }, [pedido]);
+
+  const calcularTotal = () => {
+    let nuevoTotal = 0;
+
+    nuevoTotal = pedido.reduce((nuevoTotal, articulo) => nuevoTotal + articulo.total, 0)
+
+    mostrarResumen(nuevoTotal)
+  }
 
   return (
     <Card>
@@ -46,10 +58,10 @@ const ResumenPedido = () => {
         <Text style={[globalStyles.titulo, { paddingVertical: 10 }]}>Resumen Pedido</Text>
       </Center>
       <>
-        {pedido.map(platillo => {
+        {pedido.map((platillo, i) => {
           const { cantidad, nombre, imagen, id, precio, total } = platillo;
           return (
-            <View key={id}>
+            <View key={id + i}>
               <Stack space={3} >
                 <HStack space={3} alignItems="center">
                   <Image style={{
@@ -71,7 +83,7 @@ const ResumenPedido = () => {
                       <Text>Cantidad: {cantidad}</Text>
                     </HStack>
                     <HStack>
-                      <Text>Precio: {precio}</Text>
+                      <Text>Precio: {formatUSD(precio)}</Text>
                     </HStack>
                   </VStack>
                 </HStack>
@@ -80,7 +92,7 @@ const ResumenPedido = () => {
           );
         })}
 
-        <Text style={globalStyles.cantidad}>Total a Pagar: S/. </Text>
+        <Text style={globalStyles.cantidad}>Total a Pagar: S/. {formatUSD(total)} </Text>
       </>
     </Card>
   )
