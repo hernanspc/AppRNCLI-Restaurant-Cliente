@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { StyleSheet, View, } from 'react-native'
 import {
   Container,
@@ -43,10 +43,16 @@ const FormularioPlatillo = () => {
   const { platillo } = useContext(PedidoContext);
   const { precio } = platillo;
 
+  // En cuanto el componente carga calcular la cantidad a pagar
+  useEffect(() => {
+    calcularTotal();
+  }, [cantidad])
+
 
   //calcula total de platillo
   const calcularTotal = () => {
     const totalPagar = precio * cantidad;
+    guardarTotal(totalPagar)
   }
 
   const cols = useBreakpointValue({
@@ -71,7 +77,6 @@ const FormularioPlatillo = () => {
     }
   }
 
-
   //incrementar Uno
   const incrementarUno = () => {
     console.log('cantidad ', cantidad)
@@ -80,7 +85,6 @@ const FormularioPlatillo = () => {
   }
 
   const renderItem = ({ item }) =>
-
   (
     <>
       <View style={{
@@ -141,19 +145,42 @@ const FormularioPlatillo = () => {
   )
 
   return (
-    <Card>
-      <Center>
-        <Text style={[globalStyles.titulo, { paddingVertical: 15 }]}>Cantidad</Text>
+    <>
+      <Card>
+        <Center>
+          <Text style={[globalStyles.titulo, { paddingVertical: 15 }]}>Cantidad</Text>
+          <Box w="100%">
+            <FlatList data={DATA}
+              renderItem={renderItem}
+              keyExtractor={DATA => DATA.id}
+              numColumns={cols}
+            />
+          </Box>
+          <Text style={globalStyles.cantidad}>Total: S/. {total}</Text>
+        </Center>
 
-        <Box w="100%">
-          <FlatList data={DATA}
-            renderItem={renderItem}
-            keyExtractor={DATA => DATA.id}
-            numColumns={cols}
-          />
-        </Box>
-      </Center>
-    </Card > 
+      </Card>
+
+
+      <View style={{ position: 'absolute', bottom: 20, }}>
+        <HStack
+          space={10}
+        >
+          <Box
+            style={{ width: '100%', height: '100%' }}
+          >
+            <Button style={{ marginBottom: 10, backgroundColor: "#fd2" }}
+              onPress={() => {
+                console.log('Ordenar platillos');
+              }}
+            >
+              <Text style={globalStyles.botonTexto}>Ordenar platillo</Text>
+            </Button>
+          </Box>
+        </HStack>
+      </View>
+    </>
+
   )
 }
 
