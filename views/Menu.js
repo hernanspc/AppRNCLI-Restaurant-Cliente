@@ -45,27 +45,20 @@ const Menu = () => {
   }, []);
 
   const mostrarHeading = (categoria, i) => {
-    // return <Text style={styles.separadorTexto}> {categoria} {i} </Text>
     if (i > 0) {
       const categoriaAnterior = menu[i - 1].categoria;
       if (categoriaAnterior !== categoria) {
         return (
-          // <Separator style={styles.separador}>
           <View style={styles.separador}>
             <Text style={styles.separadorTexto}> {capitalizarPrimeraLetra(categoria?.toLowerCase())} </Text>
           </View>
-
-          // </Separator>
         )
       }
     } else {
       return (
-        // <Separator style={styles.separador}>
         <View style={styles.separador}>
           <Text style={styles.separadorTexto}> {capitalizarPrimeraLetra(categoria?.toLowerCase())} </Text>
         </View>
-
-        // </Separator>
       )
     }
   }
@@ -78,69 +71,6 @@ const Menu = () => {
           backgroundColor: '#FFF'
         }}
       >
-        {/* <FlatList data={menu} renderItem={({
-          item, index
-        }) => {
-          return (
-            <>
-              {mostrarHeading((item?.categoria), index)}
-              <Pressable onPress={() => {
-                console.log(item.nombre);
-              }}
-              >
-                <Box
-                  borderBottomWidth="1" _dark={{
-                    borderColor: "gray.600"
-                  }} borderColor="coolGray.200" pl="4" pr="5" py="2">
-                  <Card>
-                    <HStack space={3} justifyContent="space-between">
-                      <Image resizeMode="contain" size="md" style={{}} source={{
-                        uri: item?.imagen
-                      }} />
-
-                      <VStack>
-                        <Text _dark={{
-                          color: "warmGray.50"
-                        }}
-                          color="coolGray.800"
-                          bold
-                        >
-                          {item.nombre}
-                        </Text>
-                        <Text
-                          note
-                          numberOfLines={2}
-                          color="coolGray.400"
-                          _dark={{
-                            color: "warmGray.100"
-                          }}
-                        >
-                          {item.descripcion}
-                        </Text>
-
-                        <Text
-                          fontSize="xs"
-                          _dark={{
-                            color: "warmGray.50"
-                          }}
-                          color="coolGray.800"
-                          alignSelf="flex-start"
-                          fontWeight="bold"
-                        >
-                          Precio: S/. {item.precio}
-                        </Text>
-                      </VStack>
-                      <Spacer />
-                    </HStack>
-                  </Card>
-                </Box>
-              </Pressable>
-            </>
-          )
-        }}
-          keyExtractor={item => item.id}
-        /> */}
-
         <FlatList data={menu} renderItem={({
           item, index
         }) => {
@@ -169,23 +99,9 @@ const Menu = () => {
                         }} borderColor="coolGray.200" pl="4" pr="5" py="2">
                         <Stack>
                           <HStack space={3} justifyContent="space-between">
-
-                            {/* <Center size={16} bg="primary.400" rounded="md" _text={{
-                              color: "white"
-                            }} shadow={3}> */}
-                            {/* <Image
-                                // resizeMode="contain" size="md"
-                                source={{
-                                  uri: item?.imagen
-                                }}
-                              /> */}
-
                             <Image resizeMode="contain" source={{
                               uri: item?.imagen
                             }} alt="Alternate Text" size="md" />
-
-                            {/* </Center> */}
-
                             <VStack>
                               <Text _dark={{
                                 color: "warmGray.50"
@@ -208,7 +124,6 @@ const Menu = () => {
                             </VStack>
                           </HStack>
                         </Stack>
-
                       </Box>
                     </Box>
                   )
