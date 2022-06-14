@@ -37,11 +37,16 @@ import globalStyles from '../styles/global'
 const FormularioPlatillo = () => {
 
   //state para cantidades
-  const [cantidad, guardarCantidad] = useState(1)
+  const [cantidad, guardarCantidad] = useState(1);
+  const [total, guardarTotal] = useState(0)
+  //context
+  const { platillo } = useContext(PedidoContext);
+  const { precio } = platillo;
 
-  //Almaccena cantidad via input
-  const calcularCantidad = cantidad => {
 
+  //calcula total de platillo
+  const calcularTotal = () => {
+    const totalPagar = precio * cantidad;
   }
 
   const cols = useBreakpointValue({
