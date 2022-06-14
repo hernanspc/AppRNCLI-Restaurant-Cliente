@@ -95,7 +95,9 @@ const Menu = () => {
                           scale: isPressed ? 0.96 : 1
                         }]
                       }}
-                      p="5" rounded="8" shadow={3} borderWidth="1" borderColor="coolGray.200"
+                      p="5" rounded="8" shadow={3}
+                      borderWidth="1"
+                      borderColor="coolGray.200"
                       _dark={{
                         borderColor: "gray.600"
                       }}
