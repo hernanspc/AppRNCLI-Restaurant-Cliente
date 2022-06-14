@@ -2,21 +2,14 @@ import React, { useContext, useEffect, Fragment } from 'react';
 import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import {
-  Container,
-  Separator,
-  Divider,
-  Content,
   Pressable,
   Image,
   Text,
   Card,
-  Body,
-  Avatar,
   FlatList,
   HStack,
   VStack,
   Stack,
-  Badge,
   Box,
   Spacer,
   Flex,
