@@ -69,7 +69,7 @@ const DetallePlatillo = () => {
         >
           <Button style={{ marginBottom: 10, backgroundColor: "#fd2" }}
             onPress={() => {
-              console.log('ir a FormularioPlatillo');
+              // console.log('ir a FormularioPlatillo');
               navigation.navigate('FormularioPlatillo');
             }}
           >
