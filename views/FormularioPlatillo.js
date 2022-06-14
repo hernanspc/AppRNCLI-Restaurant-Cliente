@@ -44,6 +44,9 @@ const FormularioPlatillo = () => {
   const { platillo, guardarPedido } = useContext(PedidoContext);
   const { precio } = platillo;
 
+  // Redireccionar
+  const navigation = useNavigation();
+
   // En cuanto el componente carga calcular la cantidad a pagar
   useEffect(() => {
     calcularTotal();
@@ -105,6 +108,7 @@ const FormularioPlatillo = () => {
             guardarPedido(pedido);
 
             // Navegar hacia el Resumen
+            navigation.navigate('ResumenPedido');
           },
         },
         {
