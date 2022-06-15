@@ -37,6 +37,8 @@ import globalStyles from '../styles/global'
 
 const ResumenPedido = () => {
 
+  const navigation = useNavigation();
+
   // context de pedido
   const { pedido, total, mostrarResumen } = useContext(PedidoContext);
 
@@ -61,7 +63,7 @@ const ResumenPedido = () => {
         {pedido.map((platillo, i) => {
           const { cantidad, nombre, imagen, id, precio, total } = platillo;
           return (
-            <View key={id + i}>
+            <View key={id + i} style={{ marginBottom: 10 }}>
               <Stack space={3} >
                 <HStack space={3} alignItems="center">
                   <Image style={{
@@ -92,7 +94,15 @@ const ResumenPedido = () => {
           );
         })}
 
-        <Text style={globalStyles.cantidad}>Total a Pagar: S/. {formatUSD(total)} </Text>
+        <Text style={[globalStyles.cantidad, { marginTop: 10 }]}>Total a Pagar: S/. {formatUSD(total)} </Text>
+
+        <Button
+          onPress={() => navigation.navigate('Menu')}
+          style={[globalStyles.boton, { marginTop: 30 }]}
+          full
+        >
+          <Text style={globalStyles.botonTexto}>seguir pidiendo</Text>
+        </Button>
       </>
     </Card>
   )

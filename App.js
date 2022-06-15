@@ -12,6 +12,9 @@ import ProgresoPedido from './views/ProgresoPedido'
 import ResumenPedido from './views/ResumenPedido'
 import Menu from './views/Menu'
 
+//compoents
+import BotonResumen from './components/ui/BotonResumen'
+
 import FirebaseState from './context/firebase/firebaseState'
 import PedidoState from './context/pedidos/pedidoState'
 
@@ -51,7 +54,8 @@ const App = () => {
                     name="Menu"
                     component={Menu}
                     options={{
-                      title:"Nuestro Menú"
+                      title: "Nuestro Menú",
+                      headerRight: props => <BotonResumen />
                     }}
                   />
 
