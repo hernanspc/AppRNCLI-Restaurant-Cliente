@@ -11,6 +11,8 @@ const ProgresoPedido = () => {
 
   const { idpedido } = useContext(PedidoContext);
 
+  const navigation = useNavigation();
+
   const [tiempo, guardarTiempo] = useState(0)
   const [completado, guardarCompletado] = useState(false)
 
@@ -65,6 +67,18 @@ const ProgresoPedido = () => {
           <>
             <Text style={[styles.textoCompletado, { textAlign: "center", fontWeight: "bold", fontSize: 25 }]}>Orden Lista</Text>
             <Text style={[styles.textoCompletado, { textAlign: "center", fontSize: 15 }]}>Por favor pase a recojer su pedido</Text>
+
+            <Button style={[globalStyles.boton, { marginBottom: 100 }]}
+              rounded
+              _dark={2}
+              block
+              onPress={() => {
+                navigation.navigate('NuevaOrden')
+              }}
+            >
+              <Text style={[globalStyles.botonTexto]}>Comenzar una Orden Nueva</Text>
+            </Button>
+
           </>
         )}
 

@@ -43,7 +43,7 @@ const App = () => {
                   }}
                 >
                   <Stack.Screen 
-                    name="Nueva Orden"
+                  name="NuevaOrden"
                     component={NuevaOrden}
                     options={{
                       title:"Nueva Orden"
