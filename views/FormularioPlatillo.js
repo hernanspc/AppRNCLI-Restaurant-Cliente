@@ -201,7 +201,6 @@ const FormularioPlatillo = () => {
           >
             <Button style={globalStyles.boton}
               onPress={() => {
-                console.log('Ordenar platillos');
                 confirmarOrden();
               }}
             >

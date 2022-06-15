@@ -53,6 +53,27 @@ const ResumenPedido = () => {
     mostrarResumen(nuevoTotal)
   }
 
+  // Redirecciona a progreso pedido
+  const progresoPedido = () => {
+    Alert.alert(
+      'Revisa tu pedido',
+      'Una vez que realizas tu pedido, no podrás cambiarlo',
+      [
+        {
+          text: 'Confirmar',
+          onPress: () => {
+            navigation.navigate('ProgresoPedido');
+          }
+        },
+        {
+          text: 'Revisar',
+          style: 'cancel'
+        }
+      ]
+    )
+
+  }
+
   return (
     <>
       <Card>
@@ -102,7 +123,6 @@ const ResumenPedido = () => {
             onPress={() => navigation.navigate('Menu')}
             style={[{ marginTop: 30, marginBottom: 100, backgroundColor: '#000' }]}
             full
-
           >
             <Text style={[globalStyles.botonTexto, { color: '#FFF' }]}>seguir pidiendo</Text>
           </Button>
@@ -118,12 +138,9 @@ const ResumenPedido = () => {
           style={{ width: '100%', height: '100%' }}
         >
           <Button style={globalStyles.boton}
-            onPress={() => {
-              console.log('Ordenar platillos');
-              // confirmarOrden();
-            }}
+            onPress={() => progresoPedido()}
           >
-            <Text style={[globalStyles.botonTexto, { marginTop: 5, marginBottom: 5 }]}>Agregar al pedido</Text>
+            <Text style={[globalStyles.botonTexto, { marginTop: 5, marginBottom: 5 }]}>Ordenar pedido</Text>
           </Button>
         </Box>
       </HStack>
