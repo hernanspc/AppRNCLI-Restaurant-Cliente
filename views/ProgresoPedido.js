@@ -5,6 +5,7 @@ import globalStyles from '../styles/global'
 import { useNavigation } from '@react-navigation/native'
 import PedidoContext from '../context/pedidos/pedidoContext'
 import firebase from '../firebase'
+import Countdown from 'react-countdown'
 
 const ProgresoPedido = () => {
 
@@ -24,6 +25,15 @@ const ProgresoPedido = () => {
     obtenerProducto();
   }, []);
 
+  // muestra en countdown en pantalla
+  const renderer = ({ minutes, seconds }) => {
+    console.log(minutes)
+
+    return (
+      <Text style={styles.tiempo}>{minutes}:{seconds}</Text>
+    )
+  }
+
   return (
     <Card style={[globalStyles.contenedor, { backgroundColor: '#FFF' }]}>
       <View style={[globalStyles.contenido, { marginTop: 50 }]}>
@@ -38,7 +48,13 @@ const ProgresoPedido = () => {
 
         {tiempo > 0 && (
           <>
-            <Text style={{ textAlign: "center" }}>Su orden estará lista en: {tiempo} minutos. </Text>
+            <Text style={{ textAlign: "center" }}>Su orden estará lista en: </Text>
+            <Text>
+              <Countdown
+                date={Date.now() + tiempo * 60000}
+                renderer={renderer}
+              />
+            </Text>
           </>
         )}
 
@@ -51,4 +67,11 @@ const ProgresoPedido = () => {
 
 export default ProgresoPedido
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  tiempo: {
+    marginBottom: 20,
+    fontSize: 35,
+    textAlign: "center",
+    marginTop: 30,
+  }
+})
