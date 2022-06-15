@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import 'react-native-gesture-handler';
 import { StyleSheet, View } from 'react-native'
 
@@ -20,10 +20,16 @@ import PedidoState from './context/pedidos/pedidoState'
 
 import { NativeBaseProvider,  } from 'native-base';
 
+import SplashScreen from 'react-native-splash-screen'
 
 const Stack = createStackNavigator();
 
 const App = () => {
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, [])
+
   return (
     <>
       <NativeBaseProvider>
