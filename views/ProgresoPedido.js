@@ -1,7 +1,14 @@
+import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Button } from 'native-base'
+import globalStyles from '../styles/global'
+import { useNavigation } from '@react-navigation/native'
+import PedidoContext from '../context/pedidos/pedidoContext'
 
 const ProgresoPedido = () => {
+
+  const { } = useContext(PedidoContext);
+
   return (
     <View>
       <Text>ProgresoPedido</Text>

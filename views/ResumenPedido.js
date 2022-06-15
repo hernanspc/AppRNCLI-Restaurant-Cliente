@@ -33,6 +33,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { formatUSD } from '../utils/functions'
 
+import firebase from '../firebase'
+
 import PedidoContext from '../context/pedidos/pedidoContext'
 import globalStyles from '../styles/global'
 
@@ -61,7 +63,28 @@ const ResumenPedido = () => {
       [
         {
           text: 'Confirmar',
-          onPress: () => {
+          onPress: async () => {
+
+            // crear un objeto
+            const pedidoObj = {
+              tiempoentrega: 0,
+              completado: false,
+              total: Number(total),
+              orden: pedido, // array
+              creado: Date.now()
+            };
+
+            console.log('pedidoObj ', pedidoObj)
+
+            try {
+              const pedido = await firebase.db.collection('ordenes').add(pedidoObj);
+              console.log(pedido.id)
+            } catch (error) {
+              console.log('ResumenPedido: ', error.message)
+            }
+
+            // Escribir el pedido en firebase
+
             navigation.navigate('ProgresoPedido');
           }
         },
