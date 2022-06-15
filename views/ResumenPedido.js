@@ -41,7 +41,7 @@ const ResumenPedido = () => {
   const navigation = useNavigation();
 
   // context de pedido
-  const { pedido, total, mostrarResumen } = useContext(PedidoContext);
+  const { pedido, total, mostrarResumen, eliminarProducto } = useContext(PedidoContext);
 
   useEffect(() => {
     calcularTotal();
@@ -70,8 +70,28 @@ const ResumenPedido = () => {
           style: 'cancel'
         }
       ]
-    )
+    );
+  }
 
+  //Elimina un product de arreglo de pedidos
+  const confirmarEliminacion = id => {
+    Alert.alert(
+      '¿Desea eliminar este  artículo?',
+      'Una vez eliminado no se puede recuperar',
+      [
+        {
+          text: 'Confirmar',
+          onPress: () => {
+            //Eliminar del state
+            eliminarProducto(id)
+
+          }
+        },
+        {
+          text: 'Cancelar', style: 'cancel'
+        }
+      ]
+    );
   }
 
   return (
@@ -112,6 +132,7 @@ const ResumenPedido = () => {
                       </HStack>
                       <HStack>
                         <Button
+                          onPress={() => confirmarEliminacion(id)}
                           // style={{ width: '100%' }}
                           colorScheme="danger"
                           style={{
