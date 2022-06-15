@@ -7,11 +7,11 @@ import PedidoContext from '../context/pedidos/pedidoContext'
 
 const ProgresoPedido = () => {
 
-  const { } = useContext(PedidoContext);
+  const { idpedido } = useContext(PedidoContext);
 
   return (
     <View>
-      <Text>ProgresoPedido</Text>
+      <Text>{idpedido}</Text>
     </View>
   )
 }
