@@ -74,18 +74,16 @@ const ResumenPedido = () => {
               creado: Date.now()
             };
 
-            console.log('pedidoObj ', pedidoObj)
-
             try {
               const pedido = await firebase.db.collection('ordenes').add(pedidoObj);
-              console.log(pedido.id)
+              pedidoRealizado(pedido.id)
+              // Redireccionar a progresso
+              navigation.navigate('ProgresoPedido');
+
             } catch (error) {
               console.log('ResumenPedido: ', error.message)
             }
 
-            // Escribir el pedido en firebase
-
-            navigation.navigate('ProgresoPedido');
           }
         },
         {
