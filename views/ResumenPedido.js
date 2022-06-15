@@ -86,8 +86,8 @@ const ResumenPedido = () => {
           {pedido.map((platillo, i) => {
             const { cantidad, nombre, imagen, id, precio, total } = platillo;
             return (
-              <View key={id + i} style={{ marginBottom: 10 }}>
-                <Stack space={3} >
+              <View key={id + i} style={{ marginBottom: 20 }}>
+                <Stack space={2} >
                   <HStack space={3} alignItems="center">
                     <Image style={{
                       height: 100,
@@ -109,6 +109,19 @@ const ResumenPedido = () => {
                       </HStack>
                       <HStack>
                         <Text>Precio: {formatUSD(precio)}</Text>
+                      </HStack>
+                      <HStack>
+                        <Button
+                          // style={{ width: '100%' }}
+                          colorScheme="danger"
+                          style={{
+                            textAlign: "center", width: '80%',
+                          }}
+                        // style={[globalStyles.botonTexto, { color: '#FFF' }]}
+                        >
+                          <Text style={{ color: '#FFF', }}>Eliminar</Text>
+                        </Button>
+
                       </HStack>
                     </VStack>
                   </HStack>
