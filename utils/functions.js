@@ -55,22 +55,4 @@ export function ISODateToFormated(value) {
   return dt + "-" + month + "-" + year;
 }
 
-export const switchTextEstado = (value) => {
-  switch (value) {
-    case "TRANSFERIDO":
-      return "#3EBD3B";
-      break;
-    case "OBSERVADO":
-      return "#FF7F00";
-      break;
-    case "PENDIENTE":
-      return "#ECDA23";
-      break;
-    case "POR DISTRIBUIR":
-      return "#EBA3EE";
-      break;
-    default:
-      return "#496deb";
-      break;
-  }
-};
+

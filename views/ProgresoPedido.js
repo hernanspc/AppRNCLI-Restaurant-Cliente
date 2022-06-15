@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Heading } from 'react-native'
 import { Button, Card } from 'native-base'
 import globalStyles from '../styles/global'
 import { useNavigation } from '@react-navigation/native'
@@ -12,13 +12,15 @@ const ProgresoPedido = () => {
   const { idpedido } = useContext(PedidoContext);
 
   const [tiempo, guardarTiempo] = useState(0)
+  const [completado, guardarCompletado] = useState(false)
 
   useEffect(() => {
     const obtenerProducto = () => {
       firebase.db.collection('ordenes')
         .doc(idpedido)
         .onSnapshot(function (doc) {
-          guardarTiempo(doc.data().tiempoentrega)
+          guardarTiempo(doc.data().tiempoentrega);
+          guardarCompletado(doc.data().completado);
         })
 
     }
@@ -46,7 +48,7 @@ const ProgresoPedido = () => {
           )
         }
 
-        {tiempo > 0 && (
+        {!completado && tiempo > 0 && (
           <>
             <Text style={{ textAlign: "center" }}>Su orden estará lista en: </Text>
             <Text>
@@ -55,6 +57,14 @@ const ProgresoPedido = () => {
                 renderer={renderer}
               />
             </Text>
+          </>
+        )}
+
+
+        {completado && (
+          <>
+            <Text style={[styles.textoCompletado, { textAlign: "center", fontWeight: "bold", fontSize: 25 }]}>Orden Lista</Text>
+            <Text style={[styles.textoCompletado, { textAlign: "center", fontSize: 15 }]}>Por favor pase a recojer su pedido</Text>
           </>
         )}
 
@@ -73,5 +83,11 @@ const styles = StyleSheet.create({
     fontSize: 35,
     textAlign: "center",
     marginTop: 30,
+  },
+  textoCompletado: {
+    textAlign: "center",
+    textTransform: 'uppercase',
+    marginBottom: 20,
   }
+
 })
