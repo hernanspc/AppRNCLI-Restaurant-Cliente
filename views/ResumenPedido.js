@@ -27,7 +27,8 @@ import {
   AddIcon,
   MinusIcon,
   FlatList,
-  useBreakpointValue
+  useBreakpointValue,
+  ScrollView
 } from 'native-base'
 import { useNavigation } from '@react-navigation/native';
 import { formatUSD } from '../utils/functions'
@@ -48,63 +49,87 @@ const ResumenPedido = () => {
 
   const calcularTotal = () => {
     let nuevoTotal = 0;
-
     nuevoTotal = pedido.reduce((nuevoTotal, articulo) => nuevoTotal + articulo.total, 0)
-
     mostrarResumen(nuevoTotal)
   }
 
   return (
-    <Card>
-      <Center>
-        <Text style={[globalStyles.titulo, { paddingVertical: 10 }]}>Resumen Pedido</Text>
-      </Center>
-      <>
-        {pedido.map((platillo, i) => {
-          const { cantidad, nombre, imagen, id, precio, total } = platillo;
-          return (
-            <View key={id + i} style={{ marginBottom: 10 }}>
-              <Stack space={3} >
-                <HStack space={3} alignItems="center">
-                  <Image style={{
-                    height: 100,
-                    width: 100
-                  }} resizeMode="contain" source={{
-                    uri: imagen
-                  }} alt="Alternate Text" size="xs" />
+    <>
+      <Card>
 
-                  <VStack
-                    space={1}
-                    divider={<Divider />}
-                    w="90%"
-                  >
-                    <HStack>
-                      <Text>{nombre}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text>Cantidad: {cantidad}</Text>
-                    </HStack>
-                    <HStack>
-                      <Text>Precio: {formatUSD(precio)}</Text>
-                    </HStack>
-                  </VStack>
-                </HStack>
-              </Stack>
-            </View>
-          );
-        })}
+        <ScrollView >
+          <Center>
+            <Text style={[globalStyles.titulo, { paddingVertical: 10 }]}>Resumen Pedido</Text>
+          </Center>
 
-        <Text style={[globalStyles.cantidad, { marginTop: 10 }]}>Total a Pagar: S/. {formatUSD(total)} </Text>
+          {pedido.map((platillo, i) => {
+            const { cantidad, nombre, imagen, id, precio, total } = platillo;
+            return (
+              <View key={id + i} style={{ marginBottom: 10 }}>
+                <Stack space={3} >
+                  <HStack space={3} alignItems="center">
+                    <Image style={{
+                      height: 100,
+                      width: 100
+                    }} resizeMode="contain" source={{
+                      uri: imagen
+                    }} alt="Alternate Text" size="xs" />
 
-        <Button
-          onPress={() => navigation.navigate('Menu')}
-          style={[globalStyles.boton, { marginTop: 30 }]}
-          full
+                    <VStack
+                      space={1}
+                      divider={<Divider />}
+                      w="90%"
+                    >
+                      <HStack>
+                        <Text>{nombre}</Text>
+                      </HStack>
+                      <HStack>
+                        <Text>Cantidad: {cantidad}</Text>
+                      </HStack>
+                      <HStack>
+                        <Text>Precio: {formatUSD(precio)}</Text>
+                      </HStack>
+                    </VStack>
+                  </HStack>
+                </Stack>
+              </View>
+            );
+          })}
+
+          <Text style={[globalStyles.cantidad, { marginTop: 10 }]}>Total a Pagar: S/. {formatUSD(total)} </Text>
+
+          <Button
+            onPress={() => navigation.navigate('Menu')}
+            style={[{ marginTop: 30, marginBottom: 100, backgroundColor: '#000' }]}
+            full
+
+          >
+            <Text style={[globalStyles.botonTexto, { color: '#FFF' }]}>seguir pidiendo</Text>
+          </Button>
+        </ScrollView>
+
+      </Card>
+
+      <HStack
+        space={1}
+        style={{ position: 'absolute', bottom: 0, }}
+      >
+        <Box
+          style={{ width: '100%', height: '100%' }}
         >
-          <Text style={globalStyles.botonTexto}>seguir pidiendo</Text>
-        </Button>
-      </>
-    </Card>
+          <Button style={globalStyles.boton}
+            onPress={() => {
+              console.log('Ordenar platillos');
+              // confirmarOrden();
+            }}
+          >
+            <Text style={[globalStyles.botonTexto, { marginTop: 5, marginBottom: 5 }]}>Agregar al pedido</Text>
+          </Button>
+        </Box>
+      </HStack>
+
+    </>
+
   )
 }
 
