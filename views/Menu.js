@@ -97,10 +97,14 @@ const Menu = () => {
                       // p="5" rounded="8" shadow={1}
                       borderWidth="0.5"
                       borderColor="coolGray.200"
-                      pl="4" pr="5" py="2"
+                      // pl="4" pr="5" py="2"
                     >
-                      <Card>
-                        <HStack space={3} justifyContent="space-between">
+                      <>
+                        <HStack
+                          style={{ padding: 10 }}
+                          space={3}
+                          justifyContent="space-between"
+                        >
                           <Image resizeMode="contain" source={{
                             uri: imagen
                           }} alt="Alternate Text" size="md" />
@@ -118,18 +122,13 @@ const Menu = () => {
                               note
                               numberOfLines={2}
                               color="coolGray.400"
-                              _dark={{
-                                color: "warmGray.100"
-                              }}
+                              isTruncated maxW="300" w="80%"
                             >
                               {descripcion}
                             </Text>
 
                             <Text
                               fontSize="xs"
-                              _dark={{
-                                color: "warmGray.50"
-                              }}
                               color="coolGray.800"
                               alignSelf="flex-start"
                               fontWeight="bold"
@@ -139,7 +138,7 @@ const Menu = () => {
                           </VStack>
                           <Spacer />
                         </HStack>
-                      </Card>
+                      </>
                     </Box>
                   }}
                 </Pressable>
