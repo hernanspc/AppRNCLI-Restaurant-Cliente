@@ -192,9 +192,9 @@ const FormularioPlatillo = () => {
 
       </Card>
 
-      <View style={{ position: 'absolute', bottom: 20, }}>
-        <HStack
-          space={10}
+      <HStack
+        space={10}
+        style={{ position: 'absolute', bottom: 0, }}
         >
           <Box
             style={{ width: '100%', height: '100%' }}
@@ -204,11 +204,10 @@ const FormularioPlatillo = () => {
                 confirmarOrden();
               }}
             >
-              <Text style={globalStyles.botonTexto}>Agregar al pedido</Text>
+            <Text style={[globalStyles.botonTexto, { marginTop: 5, marginBottom: 5 }]}>Agregar al pedido</Text>
             </Button>
           </Box>
-        </HStack>
-      </View>
+      </HStack>
     </>
 
   )

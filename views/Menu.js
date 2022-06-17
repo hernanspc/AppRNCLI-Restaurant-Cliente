@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, Fragment } from 'react';
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Platform } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import {
   Pressable,
@@ -64,6 +64,7 @@ const Menu = () => {
           backgroundColor: '#FFF'
         }}
       >
+        {/* <Text style={styles.value}>{Platform.OS}</Text> */}
         <FlatList data={menu} renderItem={({
           item, index
         }) => {
@@ -93,12 +94,9 @@ const Menu = () => {
                           scale: isPressed ? 0.96 : 1
                         }]
                       }}
-                      p="5" rounded="8" shadow={3}
-                      borderWidth="1"
+                      // p="5" rounded="8" shadow={1}
+                      borderWidth="0.5"
                       borderColor="coolGray.200"
-                      _dark={{
-                        borderColor: "gray.600"
-                      }}
                       pl="4" pr="5" py="2"
                     >
                       <Card>
