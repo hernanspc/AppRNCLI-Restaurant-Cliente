@@ -63,7 +63,7 @@ const ProgresoPedido = () => {
 
         {completado ?
           <>
-            <Text style={[styles.textoCompletado, { textAlign: "center", fontWeight: "bold", fontSize: 25 }]}>Orden Lista</Text>
+            <Text style={[styles.textoCompletado, { textAlign: "center", fontWeight: "bold", fontSize: 25 }, Platform.OS === "ios" ? '' : { paddingTop: 20 }]}>Orden Lista</Text>
             <Text style={[styles.textoCompletado, { textAlign: "center", fontSize: 15 }]}>Por favor pase a recojer su pedido</Text>
 
             <Button
